@@ -2,7 +2,7 @@
 
 The overview of the project - TBD
 
-# Technologies used
+## Technologies used
 - Vite + React
 - TypeScript
 - TailwindCSS
