@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import CaterpillarLogo from "../assets/cat-login.jpg";
+import { useNavigate, Link } from "react-router-dom";
+import CaterpillarLogo from "../assets/navbar-logo.png";
 import { UserCircle } from "lucide-react";
 
 const Navbar: React.FC = () => {
@@ -13,7 +13,9 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="flex items-center justify-between bg-yellow-100 px-6 py-3 shadow-md">
-      <img src={CaterpillarLogo} alt="Caterpillar" className="h-10" />
+      <Link to="/home">
+        <img src={CaterpillarLogo} alt="Caterpillar" className="h-10" />
+      </Link>
 
       <div className="relative">
         <UserCircle
