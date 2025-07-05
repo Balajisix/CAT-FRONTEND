@@ -7,8 +7,13 @@ The overview of the project - TBD
 - TypeScript
 - TailwindCSS
 
+## Clone the repository
 ```bash
 git clone https://github.com/Balajisix/CAT-FRONTEND.git
+```
+
+## Install dependencies
+```bash
 cd cat-frontend
 npm install
 npm run dev
