@@ -15,7 +15,7 @@ const RegisterForm: React.FC = () => {
     try {
       const res = await register({ username, email, password });
       
-      if(res.status === 200) {
+      if(res.status === 201) {
         navigate('/');
       } else {
         const data = res.data;

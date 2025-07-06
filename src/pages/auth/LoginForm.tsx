@@ -15,8 +15,7 @@ const LoginForm: React.FC = () => {
       const res = await login({ email, password });
 
       if (res.status === 200) {
-        const data = res.data;
-        localStorage.setItem('token', data.token); 
+        res.data;
         navigate("/home");
       } else {
         const errorData = await res.data;
