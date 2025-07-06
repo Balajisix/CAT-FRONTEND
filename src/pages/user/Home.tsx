@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/user/Navbar";
+import Footer from "../../components/user/Footer";
 
 const Home: React.FC = () => {
   return (

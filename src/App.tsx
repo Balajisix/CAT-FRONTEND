@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginForm from "./pages/auth/LoginForm";
 import RegisterForm from "./pages/auth/RegisterForm";
-import Home from "./pages/Home";
+import Home from "./pages/user/Home";
 import AdminPanel from "./pages/admin/Dashboard";
 
 const App = () => {

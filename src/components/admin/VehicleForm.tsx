@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import type { VehicleData } from "../types/vehicle";
-import { submitData } from "../api/util";
+import type { VehicleData } from "../../types/vehicle";
+import { submitData } from "../../api/util";
 
 interface Props {
   data: VehicleData;

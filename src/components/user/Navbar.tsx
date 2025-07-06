@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import CaterpillarLogo from "../assets/navbar-logo.png";
+import CaterpillarLogo from "../../assets/navbar-logo.png";
 import { UserCircle } from "lucide-react";
 
 const Navbar: React.FC = () => {

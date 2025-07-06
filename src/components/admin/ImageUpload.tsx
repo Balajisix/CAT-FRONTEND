@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { imageUpload } from "../api/util";
-import type { VehicleData } from "../types/vehicle";
+import { imageUpload } from "../../api/util";
+import type { VehicleData } from "../../types/vehicle";
 import VehicleForm from "./VehicleForm";
 
 const ImageUplaod: React.FC = () => {
