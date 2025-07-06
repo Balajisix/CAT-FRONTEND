@@ -8,6 +8,7 @@ interface Props {
 
 const VehicleForm: React.FC<Props> = ({ data }) => {
   const [driverName, setDriverName] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<number>();
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -17,6 +18,7 @@ const VehicleForm: React.FC<Props> = ({ data }) => {
       await submitData({
         ...data,
         driverName,
+        phoneNumber
       });
       setSuccess(true);
     } catch(err) {
@@ -41,6 +43,17 @@ const VehicleForm: React.FC<Props> = ({ data }) => {
           onChange={(e) => setDriverName(e.target.value)}
           className="border rounded px-3 py-2 mt-1 w-full"
           placeholder="Enter driver name" 
+          required
+        />
+      </label>
+      <label className="block mt-4">
+        Phone Number:
+        <input 
+          type="number"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value === '' ? undefined : Number(e.target.value))} 
+          className="border rounded px-3 py-2 mt-1 w-full"
+          placeholder="Enter the phone number"
           required
         />
       </label>
