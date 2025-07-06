@@ -34,7 +34,12 @@ const ImageUplaod: React.FC = () => {
   return(
     <div className="p-4 max-w-2xl mx-auto">
       <h1 className="text-xl font-bold mb-4">Upload Vehilce Image</h1>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <input 
+        type="file" 
+        accept="image/*" 
+        onChange={handleImageChange} 
+        className="border border-gray-400 rounded px-4 py-2 cursor-pointer text-sm file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-yellow-200 file:text-gray-800 hover:file:bg-yellow-300" 
+      />
       <button
         onClick={handleUpload}
         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
