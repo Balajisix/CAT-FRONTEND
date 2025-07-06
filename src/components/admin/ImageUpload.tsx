@@ -3,7 +3,7 @@ import { imageUpload } from "../../api/util";
 import type { VehicleData } from "../../types/vehicle";
 import VehicleForm from "./VehicleForm";
 
-const ImageUplaod: React.FC = () => {
+const ImageUpload: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [vehicleData, setVehicleData] = useState<VehicleData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -22,10 +22,23 @@ const ImageUplaod: React.FC = () => {
 
     setLoading(true);
     try {
-      const result = await imageUpload(formData);
-      setVehicleData(result.data);
+      const response = await imageUpload(formData);
+            const backendData = response.data;
+      
+      console.log("Backend response:", backendData);
+            const transformedData: VehicleData = {
+        assetId: backendData.asset_id,       
+        assetName: backendData.asset_name,    
+        imageUrl: backendData.image_url,      
+        imagePath: backendData.image_path,    
+      };
+      
+      console.log("Transformed data:", transformedData);
+      
+      setVehicleData(transformedData);
     } catch(err) {
       console.error("Upload failed: ", err);
+      alert("Image upload failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -33,7 +46,7 @@ const ImageUplaod: React.FC = () => {
 
   return(
     <div className="p-4 max-w-2xl mx-auto">
-      <h1 className="text-xl font-bold mb-4">Upload Vehilce Image</h1>
+      <h1 className="text-xl font-bold mb-4">Upload Vehicle Image</h1>
       <input 
         type="file" 
         accept="image/*" 
@@ -42,8 +55,8 @@ const ImageUplaod: React.FC = () => {
       />
       <button
         onClick={handleUpload}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        disabled={loading}
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+        disabled={loading || !selectedImage}
       >
         {loading ? "Processing..." : "Upload"}
       </button>
@@ -53,4 +66,4 @@ const ImageUplaod: React.FC = () => {
   );
 }
 
-export default ImageUplaod;
+export default ImageUpload;
