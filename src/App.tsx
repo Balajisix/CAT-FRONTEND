@@ -4,6 +4,7 @@ import RegisterForm from "./pages/auth/RegisterForm";
 import Home from "./pages/user/Home";
 import AdminPanel from "./pages/admin/Dashboard";
 import RegisterVehicle from "./pages/admin/Register";
+import GateCheck from "./pages/admin/GateCheck";
 
 const App = () => {
   return(
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/admin/dashboard" element={<AdminPanel />} />
         <Route path="/admin/register" element={<RegisterVehicle />} />
+        <Route path="/admin/gate-check" element={<GateCheck />} />
       </Routes>
     </Router>
   );
