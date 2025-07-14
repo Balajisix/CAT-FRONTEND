@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getVehicleStatistics, getAuthorizedVehicles, getRecentMovements } from "../../api/util";
-import type { VehicleStatistics, AuthorizedVehicle, VehicleMovement } from "../../types/vehicle";
+import { getVehicleStatistics, getRecentMovements } from "../../api/util";
+import type { VehicleStatistics, VehicleMovement } from "../../types/vehicle";
 import MovementChart from "./MovementChart";
 import RecentMovements from "./RecentMovements";
 
 const DashboardStats: React.FC = () => {
   const [stats, setStats] = useState<VehicleStatistics | null>(null);
-  const [authorizedVehicles, setAuthorizedVehicles] = useState<AuthorizedVehicle[]>([]);
   const [recentMovements, setRecentMovements] = useState<VehicleMovement[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,14 +19,12 @@ const DashboardStats: React.FC = () => {
     setError(null);
     
     try {
-      const [statsResponse, vehiclesResponse, movementsResponse] = await Promise.all([
+      const [statsResponse, movementsResponse] = await Promise.all([
         getVehicleStatistics(),
-        getAuthorizedVehicles(),
         getRecentMovements()
       ]);
       
       setStats(statsResponse.data.stats);
-      setAuthorizedVehicles(vehiclesResponse.data.vehicles);
       setRecentMovements(movementsResponse.data.movements);
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to load dashboard data');
@@ -155,56 +152,6 @@ const DashboardStats: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Recent Authorized Vehicles */}
-      <div className="bg-white p-6 rounded-lg shadow-md border">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Recent Authorized Vehicles</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  License Plate
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Vehicle Type
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Owner
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Added On
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {authorizedVehicles.slice(0, 10).map((vehicle) => (
-                <tr key={vehicle.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="font-mono text-sm font-medium text-gray-900">
-                      {vehicle.license_plate}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {vehicle.vehicle_type}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {vehicle.owner_name}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {new Date(vehicle.added_on).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {authorizedVehicles.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            No authorized vehicles found
-          </div>
-        )}
       </div>
     </div>
   );

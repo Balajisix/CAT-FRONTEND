@@ -36,7 +36,13 @@ const Navbar: React.FC = () => {
             to="/admin/register"
             className="hover:text-black transition-colors py-2"
           >
-            Register Vehicle
+            Vehicle Registeration
+          </Link>
+          <Link 
+            to="/admin/registered-vehicles"
+            className="hover:text-black transition-colors py-2"
+          >
+            Registered Vehicles
           </Link>
         </div>
 
